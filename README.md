@@ -1,0 +1,1 @@
+# smart-plug-automate-mac-battery
