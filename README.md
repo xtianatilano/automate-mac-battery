@@ -11,7 +11,7 @@ To achieve what I want, I decided to buy a cheap [Smart Power Strip](https://www
 You can also do this with a smart plug that has IFTTT support if you just want one specifically for your MacBook.
 
 ## Requirements
-1. Macbook
+1. Macbookasdasds
 2. Smart Plug or Smart Power Strip with individual control that has IFTTT support
 3. IFTTT account
 
@@ -28,7 +28,7 @@ You can also do this with a smart plug that has IFTTT support if you just want o
 6. replace `{event}` with the event name you created
 
 > example maker url to turn off:
-> 
+>
 > event name = mac\_battery\_low<br>
 > So my url is: [https://maker.ifttt.com/trigger/mac\_battery\_low/with/key/{yourMakerKey}](https://maker.ifttt.com/trigger/mac_battery_low/with/key/%7ByourMakerKey%7D)
 
