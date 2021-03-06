@@ -2,8 +2,8 @@
 
 ## Why
 
-I don't like leaving the my Mac plugged in all the time.
-It is also my preference to cycle my battery properly to extend the life of my battery.
+I don't like leaving the my Mac plugged in all the time.<br>
+It is also my preference to cycle my battery properly to extend the life of my battery.<br>
 Lastly, I'm lazy to turn on/off my charger every time my battery is full or low.
 
 ## Requirements
@@ -27,7 +27,7 @@ Lastly, I'm lazy to turn on/off my charger every time my battery is full or low.
 
 > example maker url to turn off:
 > 
-> event name = mac\_battery\_low
+> event name = mac\_battery\_low<br>
 > So my url is: [https://maker.ifttt.com/trigger/mac\_battery\_low/with/key/{yourMakerKey}](https://maker.ifttt.com/trigger/mac_battery_low/with/key/%7ByourMakerKey%7D)
 
 <br>
