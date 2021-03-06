@@ -6,14 +6,15 @@ I don't like leaving the my Mac plugged in all the time.<br>
 It is also my preference to cycle my battery properly to extend the life of my battery.<br>
 Lastly, I'm lazy to turn on/off my charger every time my battery is full or low.
 
-## Requirements
+To achieve what I want, I decided to buy a [Smart Power Strip](https://www.lazada.com.ph/products/joylab-wifi-smart-power-stripwifi-smart-socket-with-overload-protection-with-4-ac-outlets-and-4-usb-31a-no-hub-required-works-with-smart-lifetuya-amazon-alexa-and-google-home-i874650801-s2776138630.html) that has individual control, supports IFTTT, and also affordable. <br>
+You can also opt to buy a smart plug that has IFTTT support if you just want specifically for your MacBook.
 
+## Requirements
 1. Macbook
 2. Smart Plug or Smart Power Strip with individual control that has IFTTT support
 3. IFTTT account
 
 ## How
-
 #### IFTTT:
 
 1. Signup for an [IFTTT](https://ifttt.com) account
