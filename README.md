@@ -14,7 +14,7 @@ Lastly, I'm lazy to turn on/off my charger every time my battery is full or low.
 
 ## How
 
-##### IFTTT:
+#### IFTTT:
 
 1. Signup for an [IFTTT](https://ifttt.com) account
 2. Create an IFTTT applet
@@ -30,40 +30,37 @@ Lastly, I'm lazy to turn on/off my charger every time my battery is full or low.
 > event name = mac\_battery\_low<br>
 > So my url is: [https://maker.ifttt.com/trigger/mac\_battery\_low/with/key/{yourMakerKey}](https://maker.ifttt.com/trigger/mac_battery_low/with/key/%7ByourMakerKey%7D)
 
-<br>
-##### MacBook:
 
-Open AppleScript Editor on your Mac, paste the code block bloew:
+#### MacBook:
+
+Open AppleScript Editor on your Mac, paste the code block below:
 
 ``` applescript
 set chargeState to do shell script "pmset -g batt | awk '{printf \"%s %s\\n\", $4,$5;exit}'"
 set percentLeft to do shell script "pmset -g batt | awk -F '[[:blank:]]+|;' 'NR==2 { print $4 }'"
 
 considering numeric strings
-        -- here you can set the percentage which you want to turn on the smart plug (currently set to 15)
+    -- here you can set the percentage which you want to turn on the smart plug (currently set to 15)
 	if chargeState contains "Battery Power" and percentLeft ≤ 15 then
-            -- replace {{makerUrlToTurnOnPlug}} to your webhook url to turn on the smart plug
+        -- replace {{makerUrlToTurnOnPlug}} to your webhook url to turn on the smart plug
 	    do shell script "curl -X POST {{makerUrlToTurnOnPlug}}"
 	end if
 
 	-- here you can set the percentage which you want to turn off the smart plug (currently set to 90)
 	if chargeState contains "AC Power" and percentLeft ≥ 90 then
-            -- replace {{makerUrlToTurnOffPlug}} to your webhook url to turn off the smart plug
+        -- replace {{makerUrlToTurnOffPlug}} to your webhook url to turn off the smart plug
 	    do shell script "curl -X POST {{makerUrlToTurnOffPlug}}"
 	end if
 end considering
 ```
-
 Save this wherever you want.
 
-##### launchd:
-
+#### launchd:
 Next, we would need a launchd or a cron in Linux terms to execute the AppleScript we've just created in intervals.
 We can do this in MacOS by creating a `.plist` file in `/Library/LaunchAgents/`
 *to understand more about*`launchd.plist`*, you can read this [documentation](https://www.manpagez.com/man/5/launchd.plist/).*
 
 Open your favorite code editor, then paste the code block below:
-
 ``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -83,7 +80,6 @@ Open your favorite code editor, then paste the code block below:
 </dict>
 </plist>
 ```
-
 1. Make sure to update the file location in line 10 to the location where you stored the AppleScript you've created
 2. You can change the interval in line 15 based to your liking, currently set to 300 seconds or 5 minutes
 3. For best practice save this file similarly to your label, example would be `automate-battery.plist`
