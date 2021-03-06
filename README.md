@@ -36,7 +36,6 @@ You can also do this with a smart plug that has IFTTT support if you just want o
 #### MacBook:
 
 Open AppleScript Editor on your Mac, paste the code block below:
-
 ``` applescript
 set chargeState to do shell script "pmset -g batt | awk '{printf \"%s %s\\n\", $4,$5;exit}'"
 set percentLeft to do shell script "pmset -g batt | awk -F '[[:blank:]]+|;' 'NR==2 { print $4 }'"
@@ -56,6 +55,10 @@ considering numeric strings
 end considering
 ```
 Save this wherever you want.
+
+Quick explanation for this script:
+- It gets the battery percentage using shell script
+- It checks if the battery percentage if it is greater/less than the target values, then it will send a webhook to IFTTT maker url to trigger the automation to your smart plug/smart power strip
 
 #### launchd:
 Next, we would need a launchd or a cron in Linux terms to execute the AppleScript we've just created in intervals.<br>
