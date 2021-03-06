@@ -1,60 +1,70 @@
-# How I automated charging process for my Macbook
+# How I automated charging my Macbook
 
 ## Why
-I wanted to properly cycle my battery and not leave the plug on all the time, just to preserve my battery life as well.
+
+I don't like leaving the my Mac plugged in all the time.
+It is also my preference to cycle my battery properly to extend the life of my battery.
+Lastly, I'm lazy to turn on/off my charger every time my battery is full or low.
 
 ## Requirements
+
 1. Macbook
-2. Smart Plug that has IFTTT integration
+2. Smart Plug or Smart Power Strip with individual control that has IFTTT support
 3. IFTTT account
 
 ## How
 
+##### IFTTT:
 
-IFTTT:
 1. Signup for an [IFTTT](https://ifttt.com) account
-2. Create an applet
+2. Create an IFTTT applet
 3. Select `WebHook` service for `If This` condition
 4. Select your smart plug integration for `Then That` condition
 5. Get your maker webhook url via maker documentation
+    * to get this, go to your account > services > WebHooks > Documentation
+    * it would like something like this: [https://maker.ifttt.com/trigger/{event}/with/key/{yourMakerKey}](https://maker.ifttt.com/trigger/%7Bevent%7D/with/key/%7ByourMakerKey)
+6. replace `{event}` with the event name you created
 
+> example maker url to turn off:
+> 
+> event name = mac\_battery\_low
+> So my url is: [https://maker.ifttt.com/trigger/mac\_battery\_low/with/key/{yourMakerKey}](https://maker.ifttt.com/trigger/mac_battery_low/with/key/%7ByourMakerKey%7D)
 
-https://maker.ifttt.com/trigger/{event}/with/key/{yourMakerKey}
+<br>
+##### MacBook:
 
-replace {event} with the events created in step 2.
+Open AppleScript Editor on your Mac, paste the code block bloew:
 
-example maker url to turn off: 
-`https://maker.ifttt.com/trigger/mac_battery_low/with/key/{yourMakerKey}`
-
-
-
-
-
-Open AppleScript Editor, and paste this code block:
-```applescript
+``` applescript
 set chargeState to do shell script "pmset -g batt | awk '{printf \"%s %s\\n\", $4,$5;exit}'"
 set percentLeft to do shell script "pmset -g batt | awk -F '[[:blank:]]+|;' 'NR==2 { print $4 }'"
 
 considering numeric strings
-    -- here you can set the percentage which you want to turn on the smart plug (currently set to 15)
+        -- here you can set the percentage which you want to turn on the smart plug (currently set to 15)
 	if chargeState contains "Battery Power" and percentLeft ≤ 15 then
-        -- replace {{makerUrlToTurnOnPlug}} to the webhook you get from your IFTTT webhook maker
-		do shell script "curl -X POST {{makerUrlToTurnOnPlug}}"
+            -- replace {{makerUrlToTurnOnPlug}} to your webhook url to turn on the smart plug
+	    do shell script "curl -X POST {{makerUrlToTurnOnPlug}}"
 	end if
 
-	-- here you can set the percentage which you want to turn off the smart plug (currently set to 95)
-	if chargeState contains "AC Power" and percentLeft ≥ 95 then
-        -- replace {{makerUrlToTurnOffPlug}} to the webhook you get from your IFTTT webhook maker
-		do shell script "curl -X POST {{makerUrlToTurnOffPlug}}"
+	-- here you can set the percentage which you want to turn off the smart plug (currently set to 90)
+	if chargeState contains "AC Power" and percentLeft ≥ 90 then
+            -- replace {{makerUrlToTurnOffPlug}} to your webhook url to turn off the smart plug
+	    do shell script "curl -X POST {{makerUrlToTurnOffPlug}}"
 	end if
 end considering
 ```
 
-Save it wherever you want.
+Save this wherever you want.
 
-Next, 
+##### launchd:
 
-```xml
+Next, we would need a launchd or a cron in Linux terms to execute the AppleScript we've just created in intervals.
+We can do this in MacOS by creating a `.plist` file in `/Library/LaunchAgents/`
+*to understand more about*`launchd.plist`*, you can read this [documentation](https://www.manpagez.com/man/5/launchd.plist/).*
+
+Open your favorite code editor, then paste the code block below:
+
+``` xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -74,16 +84,7 @@ Next,
 </plist>
 ```
 
-Save with `.plist` extension.
-
-_for example, let's save it as `automated-battery.plist`_
-
-
-Quick explanation for this `.plist` file
-
-Taken from [launchd.plist](https://www.manpagez.com/man/5/launchd.plist/) documentation
-
->`RunAtLoad` key is used to control whether your job is launched once at the time the job is loaded. The default is false.
-
-> `StartInterval` this key causes the job to be started every N seconds. If the system is asleep, the job will be started the next time the computer wakes up.  If multiple intervals transpire before the computer is woken, those events will be coalesced into one event upon wake from sleep.
-
+1. Make sure to update the file location in line 10 to the location where you stored the AppleScript you've created
+2. You can change the interval in line 15 based to your liking, currently set to 300 seconds or 5 minutes
+3. For best practice save this file similarly to your label, example would be `automate-battery.plist`
+4. If you get an error saving the `.plist `file in `/Library/LaunchAgents/`, try saving it again with admin privilages
