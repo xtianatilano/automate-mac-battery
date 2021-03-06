@@ -2,12 +2,13 @@
 
 ## Why
 
-I don't like leaving the my Mac plugged in all the time.<br>
-It is also my preference to cycle my battery properly to extend the life of my battery.<br>
-Lastly, I'm lazy to turn on/off my charger every time my battery is full or low.
+I know MacOS already has a smart battery management.<br>
+This is just solely my preference, I don't like leaving my Mac plugged in all the time, also I want to cycle my battery properly to prolong battery life(?).<br>
+Lastly, I'm lazy to turn on/off my charger every time my battery is full or low.<br>
+So if your in the same boat as me, feel free to follow the guide.
 
-To achieve what I want, I decided to buy a [Smart Power Strip](https://www.lazada.com.ph/products/joylab-wifi-smart-power-stripwifi-smart-socket-with-overload-protection-with-4-ac-outlets-and-4-usb-31a-no-hub-required-works-with-smart-lifetuya-amazon-alexa-and-google-home-i874650801-s2776138630.html) that has individual control, supports IFTTT, and also affordable. <br>
-You can also opt to buy a smart plug that has IFTTT support if you just want specifically for your MacBook.
+To achieve what I want, I decided to buy a cheap [Smart Power Strip](https://www.lazada.com.ph/products/joylab-wifi-smart-power-stripwifi-smart-socket-with-overload-protection-with-4-ac-outlets-and-4-usb-31a-no-hub-required-works-with-smart-lifetuya-amazon-alexa-and-google-home-i874650801-s2776138630.html) that has individual control and supports IFTTT.<br>
+You can also do this with a smart plug that has IFTTT support if you just want one specifically for your MacBook.
 
 ## Requirements
 1. Macbook
