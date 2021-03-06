@@ -1,4 +1,4 @@
-# How I automated charging my Macbook
+qqq# How I automated charging my Macbook
 
 ## Why
 
@@ -56,8 +56,8 @@ end considering
 Save this wherever you want.
 
 #### launchd:
-Next, we would need a launchd or a cron in Linux terms to execute the AppleScript we've just created in intervals.
-We can do this in MacOS by creating a `.plist` file in `/Library/LaunchAgents/`
+Next, we would need a launchd or a cron in Linux terms to execute the AppleScript we've just created in intervals.<br>
+We can do this in MacOS by creating a `.plist` file in `/Library/LaunchAgents/`<br>
 *to understand more about*`launchd.plist`*, you can read this [documentation](https://www.manpagez.com/man/5/launchd.plist/).*
 
 Open your favorite code editor, then paste the code block below:
@@ -81,6 +81,8 @@ Open your favorite code editor, then paste the code block below:
 </plist>
 ```
 1. Make sure to update the file location in line 10 to the location where you stored the AppleScript you've created
-2. You can change the interval in line 15 based to your liking, currently set to 300 seconds or 5 minutes
+2. You can change the interval in line 15 based to your liking, currently set to `300` seconds
 3. For best practice save this file similarly to your label, example would be `automate-battery.plist`
 4. If you get an error saving the `.plist `file in `/Library/LaunchAgents/`, try saving it again with admin privilages
+
+Automation all set!
