@@ -1,4 +1,4 @@
-qqq# How I automated charging my Macbook
+# How I automated charging my Macbook
 
 ## Why
 
