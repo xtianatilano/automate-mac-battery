@@ -3,7 +3,7 @@
 ## Why
 
 I know MacOS already has a smart battery management.<br>
-This is just solely my preference, I don't like leaving my Mac plugged in all the time, also I want to cycle my battery properly to prolong battery life(?).<br>
+This is just solely my preference, I don't like leaving my MacBook plugged in all the time, also I want to cycle my battery properly to prolong battery life(?).<br>
 Lastly, I'm lazy to turn on/off my charger every time my battery is full or low.<br>
 So if your in the same boat as me, feel free to follow the guide.
 
@@ -35,7 +35,7 @@ You can also do this with a smart plug that has IFTTT support if you just want o
 
 #### MacBook:
 
-Open AppleScript Editor on your Mac, paste the code block below:
+Open AppleScript Editor, paste the code block below:
 ``` applescript
 set chargeState to do shell script "pmset -g batt | awk '{printf \"%s %s\\n\", $4,$5;exit}'"
 set percentLeft to do shell script "pmset -g batt | awk -F '[[:blank:]]+|;' 'NR==2 { print $4 }'"
@@ -58,10 +58,10 @@ Save this wherever you want.
 
 Quick explanation for this script:
 - It gets the battery percentage using shell script
-- It checks if the battery percentage if it is greater/less than the target values, then it will send a webhook to IFTTT maker url to trigger the automation to your smart plug/smart power strip
+- It checks if the battery percentage is greater/less than the target values, then it will send a webhook to IFTTT maker url to trigger the command for your smart plug/smart power strip
 
 #### launchd:
-Next, we would need a launchd or a cron in Linux terms to execute the AppleScript we've just created in intervals.<br>
+Next, we would need a launchd or a cron (in Linux terms) to execute the AppleScript we've just created in intervals.<br>
 We can do this in MacOS by creating a `.plist` file in `/Library/LaunchAgents/`<br>
 *to understand more about*`launchd.plist`*, you can read this [documentation](https://www.manpagez.com/man/5/launchd.plist/).*
 
