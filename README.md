@@ -1,4 +1,4 @@
-# How I automated charging my macbook
+# How I automated charging process for my Macbook
 
 ## Why
 I wanted to properly cycle my battery and not leave the plug on all the time, just to preserve my battery life as well.
@@ -9,6 +9,23 @@ I wanted to properly cycle my battery and not leave the plug on all the time, ju
 3. IFTTT account
 
 ## How
+
+
+IFTTT:
+1. Signup for an [IFTTT](https://ifttt.com) account
+2. Create an applet
+3. Select `WebHook` service for `If This` condition
+4. Select your smart plug integration for `Then That` condition
+5. Get your maker webhook url via maker documentation
+
+
+https://maker.ifttt.com/trigger/{event}/with/key/{yourMakerKey}
+
+replace {event} with the events created in step 2.
+
+example maker url to turn off: 
+`https://maker.ifttt.com/trigger/mac_battery_low/with/key/{yourMakerKey}`
+
 
 
 
