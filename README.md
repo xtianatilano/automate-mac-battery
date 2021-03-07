@@ -85,8 +85,8 @@ Open your favorite code editor, then paste the code block below:
 </dict>
 </plist>
 ```
-1. Make sure to update the file location in line 10 to the location where you stored the AppleScript you've created
-2. You can change the interval in line 15 based to your liking, currently set to `300` seconds
+1. Make sure to update the file location at line 10 to the location where you stored the AppleScript you've created
+2. You can change the interval at line 15 based to your liking, currently set to `300` seconds
 3. For best practice save this file similarly to your label, example would be `automate-battery.plist`
 4. If you get an error saving the `.plist `file in `/Library/LaunchAgents/`, try saving it again with admin privilages
 
